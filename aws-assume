@@ -1,0 +1,52 @@
+#!/usr/bin/env bash
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+BIN_DIR="${DIR}/aws-assume-bin"
+
+SCRIPT_NAME=`basename "$0"`
+
+#print help
+help(){
+    {
+        echo "USAGE: $SCRIPT_NAME <subcommand> [options] "; \
+            echo "SUBCOMMAND:"; \
+            echo "      cp-public-key"; \
+            echo "      get-ssh-config"; \
+            echo "      temp-creds"; \
+            echo "      help"; \
+            echo "OPTIONS:"; \
+            echo "      -p --profile"; \
+            echo "              AWS profile name to authenticate with"; \
+            echo "      -r --region"; \
+            echo "              AWS region name"; \
+            echo "      -d --debug"; \
+            echo "              Show debug messaging"; \
+            echo "      -h --help"; \
+            echo "              Show this message"; \
+    }
+    EXIT_CODE=$1
+
+    if [ -z "$EXIT_CODE" ]; then
+        EXIT_CODE=0
+    fi
+
+    exit $EXIT_CODE;
+}
+
+if [ $# -gt 0 ]; then
+    if [ "$1" == "cp-public-key" ]; then
+        shift 1
+        bash $BIN_DIR/cp-public-key.bash $@
+    elif [ "$1" == "get-ssh-config" ]; then
+        shift 1
+        bash $BIN_DIR/get-ssh-config.bash $@
+    elif [ "$1" == "temp-creds" ]; then
+        shift 1
+        bash $BIN_DIR/temp-creds.bash $@
+    elif [ "$1" == "help" ]; then
+        help 0
+    else
+        help 0
+    fi
+else
+    help 0
+fi
