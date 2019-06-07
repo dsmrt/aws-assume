@@ -8,10 +8,12 @@ action "Filters for Master branch" {
   args = "branch master"
 }
 
-action "Test Helpers" {
-  uses = "./actions/help"
-}
-
 action "Test Installer" {
   uses = "./actions/install"
+  needs = ["Filters for Master branch"]
+}
+
+action "Test Helpers" {
+  uses = "./actions/help"
+  needs = ["Test Installer"]
 }
