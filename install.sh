@@ -7,8 +7,8 @@ DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 if [ -e "${INSTALL_LOCATION}/${EXECUTABLE}" ]; then
     echo "Deleting old executable"
-    echo "rm ${INSTALL_LOCATION}/${EXECUTABLE}"
-    echo "rm -r ${INSTALL_LOCATION}/${LIB}"
+    rm -v ${INSTALL_LOCATION}/${EXECUTABLE}
+    rm -rv ${INSTALL_LOCATION}/${LIB}
 fi
 
 
