@@ -1,22 +1,36 @@
 #!/usr/bin/env bash
 
+echo ""
+echo ""
+echo "~==~==~==~==~==~==~==~==~==~==~==~==~==~==~==~==~==~==~==~==~==~==~==~==~==~==~==~==~==~==~==~=="
 echo "No arguments"
+echo "~==~==~==~==~==~==~==~==~==~==~==~==~==~==~==~==~==~==~==~==~==~==~==~==~==~==~==~==~==~==~==~=="
 /github/workspace/aws-assume
+
+echo ""
+echo ""
+echo "~==~==~==~==~==~==~==~==~==~==~==~==~==~==~==~==~==~==~==~==~==~==~==~==~==~==~==~==~==~==~==~=="
 echo "Passing help"
+echo "~==~==~==~==~==~==~==~==~==~==~==~==~==~==~==~==~==~==~==~==~==~==~==~==~==~==~==~==~==~==~==~=="
 /github/workspace/aws-assume help
 
-echo "No arguments to cp-public-key"
-/github/workspace/aws-assume cp-public-key
+echo ""
+echo ""
+echo "~==~==~==~==~==~==~==~==~==~==~==~==~==~==~==~==~==~==~==~==~==~==~==~==~==~==~==~==~==~==~==~=="
 echo "Passing help to cp-public-key"
+echo "~==~==~==~==~==~==~==~==~==~==~==~==~==~==~==~==~==~==~==~==~==~==~==~==~==~==~==~==~==~==~==~=="
 /github/workspace/aws-assume cp-public-key help
 
-echo "No arguments to get-ssh-config"
-/github/workspace/aws-assume get-ssh-config
+echo ""
+echo ""
+echo "~==~==~==~==~==~==~==~==~==~==~==~==~==~==~==~==~==~==~==~==~==~==~==~==~==~==~==~==~==~==~==~=="
 echo "Passing help to get-ssh-config"
+echo "~==~==~==~==~==~==~==~==~==~==~==~==~==~==~==~==~==~==~==~==~==~==~==~==~==~==~==~==~==~==~==~=="
 /github/workspace/aws-assume get-ssh-config help
 
-
-echo "No arguments to temp-creds"
-/github/workspace/aws-assume temp-creds
+echo ""
+echo ""
+echo "~==~==~==~==~==~==~==~==~==~==~==~==~==~==~==~==~==~==~==~==~==~==~==~==~==~==~==~==~==~==~==~=="
 echo "Passing help to temp-creds"
+echo "~==~==~==~==~==~==~==~==~==~==~==~==~==~==~==~==~==~==~==~==~==~==~==~==~==~==~==~==~==~==~==~=="
 /github/workspace/aws-assume temp-creds help

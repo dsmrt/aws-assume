@@ -40,8 +40,7 @@ if [ -z "${AWS_DEFAULT_PROFILE}" ]; then
     error "--profile is required"
     echo ""
     echo ""
-    help;
-    exit 1;
+    help 1;
 fi
 
 
@@ -54,16 +53,14 @@ if [ -z "${DOTENV_FILE}" ]; then
     error "file is required"
     echo ""
     echo ""
-    help;
-    exit 1;
+    help 1;
 fi
 
 if [ -z "${ROLE_ARN}" ]; then
     error "Role arn was not found. Using wrong profile? Is this profile configured correctly? Profile: ${AWS_DEFAULT_PROFILE}"
     echo ""
     echo ""
-    help;
-    exit 1;
+    help 1;
 fi
 
 debug "Role arn: ${ROLE_ARN}"

@@ -36,31 +36,27 @@ TO_PROFILE=${POSITIONAL[2]};
 
 if [ "help" == "${USERNAME}" ]; then
     help;
-    exit 0;
 fi
 
 if [ -z "${USERNAME}" ]; then
     error "username is required"
     echo ""
     echo ""
-    help;
-    exit 1;
+    help 1;
 fi
 
 if [ -z "${FROM_PROFILE}" ]; then
     error "from-aws-profile is required"
     echo ""
     echo ""
-    help;
-    exit 1;
+    help 1;
 fi
 
 if [ -z "${TO_PROFILE}" ]; then
     error "to-aws-profile is required"
     echo ""
     echo ""
-    help;
-    exit 1;
+    help 1;
 fi
 
 KEYID=$(aws --profile ${FROM_PROFILE} iam list-ssh-public-keys --user-name $USERNAME | jq -r '.SSHPublicKeys[] | limit(1; select(.Status == "Active")) | .SSHPublicKeyId');

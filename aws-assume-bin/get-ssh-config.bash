@@ -30,28 +30,30 @@ help(){
 
 USERNAME=${POSITIONAL[0]};
 
+if [ "help" == "${USERNAME}" ]; then
+    help;
+    exit 0;
+fi
+
 if [ -z "${USERNAME}" ]; then
     error "username is required"
     echo ""
     echo ""
-    help;
-    exit 1;
+    help 1;
 fi
 
 if [ -z "${AWS_DEFAULT_PROFILE}" ]; then
     error "--profile is required"
     echo ""
     echo ""
-    help;
-    exit 1;
+    help 1;
 fi
 
 if [ -z "${AWS_DEFAULT_REGION}" ]; then
     error "--region is required"
     echo ""
     echo ""
-    help;
-    exit 1;
+    help 1;
 fi
 
 debug "${USERNAME}"
