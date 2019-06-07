@@ -9,9 +9,9 @@
 #6    cyan      COLOR_CYAN      0,1,1
 #7    white     COLOR_WHITE     1,1,1
 
-tput_exec=$(which tput)
-
-if [ -n "${tput_exec}" ]; then
+if tty -s
+then
+    : # your tput commands
     FG_BLACK=$(tput setaf 0)
     FG_RED=$(tput setaf 1)
     FG_GREEN=$(tput setaf 2)
