@@ -30,6 +30,10 @@ case $key in
     DEBUG="YES"
     shift # past argument
     ;;
+    -v|--version)
+    SHOW_VERSION="YES"
+    shift # past argument
+    ;;
     *)    # unknown option
     POSITIONAL+=("$1") # save it in an array for later. This should be the .env file.
     shift # past argument
@@ -41,12 +45,12 @@ set -- "${POSITIONAL[@]}" # restore positional parameters
 YES=("YES" "Y" "yes" "y")
 NO=("NO" "N" "no" "n")
 
+if [ "$SHOW_VERSION" == "YES" ]; then
+    echo $VERSION
+    exit 0;
+fi
+
 if [ "$HELP" == "YES" ]; then
     help 0;
 fi
-
-# if [ -z "${APP}" ]; then
-#     required_options
-#     exit 1;
-# fi
 

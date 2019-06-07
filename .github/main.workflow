@@ -3,6 +3,11 @@ workflow "Test Help Commands" {
   resolves = ["Test Helpers"]
 }
 
+action "Filters for Master branch" {
+  uses = "actions/bin/filter@master"
+  args = "branch master"
+}
+
 action "Test Helpers" {
   uses = "./actions/help"
 }

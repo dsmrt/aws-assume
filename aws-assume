@@ -1,8 +1,10 @@
 #!/usr/bin/env bash
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-BIN_DIR="${DIR}/aws-assume-bin"
+BIN_DIR="${DIR}/aws-assume-lib"
 
 SCRIPT_NAME=`basename "$0"`
+
+VERSION="v1.0.1"
 
 #print help
 help(){
@@ -22,6 +24,8 @@ help(){
             echo "              Show debug messaging"; \
             echo "      -h --help"; \
             echo "              Show this message"; \
+            echo "      -v --version"; \
+            echo "              Display version"; \
     }
     EXIT_CODE=$1
 
@@ -45,6 +49,7 @@ if [ $# -gt 0 ]; then
     elif [ "$1" == "help" ]; then
         help 0
     else
+        source "${BIN_DIR}/.parse-options.bash"
         help 0
     fi
 else
