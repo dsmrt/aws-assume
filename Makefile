@@ -1,3 +1,4 @@
+VERSION:=$(shell ./aws-assume -v);
 ACTION_HELP := github-action-help
 ACTION_INSTALL := github-action-install
 
@@ -19,3 +20,7 @@ build-action-help:
 test-action-help: build-action-help
 	docker run --rm \
 	    -v ${PWD}:/github/workspace/ ${ACTION_HELP}
+
+push-tag:
+	git tag ${VERSION}
+	git push --tags

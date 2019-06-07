@@ -11,3 +11,7 @@ action "Filters for Master branch" {
 action "Test Helpers" {
   uses = "./actions/help"
 }
+
+action "Test Installer" {
+  uses = "./actions/install"
+}
