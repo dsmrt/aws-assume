@@ -28,9 +28,6 @@ help(){
     exit $EXIT_CODE;
 }
 
-DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-
-
 if [ "help" == "${POSITIONAL}" ]; then
     help;
     exit 0;

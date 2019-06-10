@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+set -eu
 
 INSTALL_LOCATION=/usr/local/bin
 EXECUTABLE=aws-assume
