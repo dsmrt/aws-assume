@@ -73,7 +73,7 @@ EXPIRATION=$(echo $OUTPUT | jq -r '.Credentials.Expiration')
 DOTENV=""
 
 if [ -e "${DOTENV_FILE}" ]; then
-    DOTENV=$(sed 's/^EXPIRATION.*//;s/^AWS_ACCESS_KEY_ID.*//;s/^AWS_SECRET_ACCESS_KEY.*//;s/^AWS_SESSION_TOKEN.*//' .env | sed '/^$/d')
+    DOTENV=$(sed 's/^EXPIRATION.*//;s/^AWS_ACCESS_KEY_ID.*//;s/^AWS_SECRET_ACCESS_KEY.*//;s/^AWS_SESSION_TOKEN.*//' ${DOTENV_FILE} | sed '/^$/d')
 fi
 
 APPEND=$(
