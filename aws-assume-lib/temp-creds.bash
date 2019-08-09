@@ -12,6 +12,8 @@ help(){
             echo "      Output temporary credentials from a specific profile into a text file like a .env. "; \
             echo "      This will work with an existing file and will overwrite the items it creates (if run more than one time)."; \
             echo "OPTIONS:"; \
+            echo "      -e --export"; \
+            echo "              Export as environmental variables"; \
             echo "      -p --profile"; \
             echo "              AWS profile name to authenticate with"; \
             echo "      -d --debug"; \
@@ -47,10 +49,8 @@ MAX_DURATION=3600
 DOTENV_FILE=$POSITIONAL
 
 if [ -z "${DOTENV_FILE}" ]; then
-    error "file is required"
-    echo ""
-    echo ""
-    help 1;
+    rm -f /tmp/aws-assume-dotenv
+    DOTENV_FILE=/tmp/aws-assume-dotenv
 fi
 
 if [ -z "${ROLE_ARN}" ]; then
@@ -76,13 +76,23 @@ if [ -e "${DOTENV_FILE}" ]; then
     DOTENV=$(sed 's/^EXPIRATION.*//;s/^AWS_ACCESS_KEY_ID.*//;s/^AWS_SECRET_ACCESS_KEY.*//;s/^AWS_SESSION_TOKEN.*//' ${DOTENV_FILE} | sed '/^$/d')
 fi
 
+PREPEND=""
+
+if [ ! -z "${EXPORT_TEMP_CREDS}"]; then 
+    PREPEND="export "
+fi
+
 APPEND=$(
     echo ""
     echo ""
-    echo "AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}"; \
-    echo "AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}"; \
-    echo "AWS_SESSION_TOKEN=${AWS_SESSION_TOKEN}"; \
-    echo "EXPIRATION=${EXPIRATION}"
+    echo "${PREPEND}AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}"; \
+    echo "${PREPEND}AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}"; \
+    echo "${PREPEND}AWS_SESSION_TOKEN=${AWS_SESSION_TOKEN}"; \
+    echo "${PREPEND}EXPIRATION=${EXPIRATION}"
 );
 
 echo "$DOTENV$APPEND" > $DOTENV_FILE
+
+if [ ! -z "${EXPORT_TEMP_CREDS}"]; then 
+    source $DOTENV_FILE
+fi

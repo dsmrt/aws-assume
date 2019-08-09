@@ -26,6 +26,10 @@ case $key in
     shift # past argument
     shift # past value
     ;;
+    -e|--export)
+    EXPORT_TEMP_CREDS="YES"
+    shift # past argument
+    ;;
     -d|--debug)
     DEBUG="YES"
     shift # past argument
