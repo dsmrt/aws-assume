@@ -74,11 +74,12 @@ DOTENV=""
 
 if [ -e "${DOTENV_FILE}" ]; then
     DOTENV=$(sed 's/^EXPIRATION.*//;s/^AWS_ACCESS_KEY_ID.*//;s/^AWS_SECRET_ACCESS_KEY.*//;s/^AWS_SESSION_TOKEN.*//' ${DOTENV_FILE} | sed '/^$/d')
+    DOTENV=$(sed 's/^export EXPIRATION.*//;s/^export AWS_ACCESS_KEY_ID.*//;s/^export AWS_SECRET_ACCESS_KEY.*//;s/^export AWS_SESSION_TOKEN.*//' ${DOTENV_FILE} | sed '/^$/d')
 fi
 
 PREPEND=""
 
-if [ ! -z "${EXPORT_TEMP_CREDS}"]; then 
+if [ ! -z "${EXPORT_TEMP_CREDS}" ]; then
     PREPEND="export "
 fi
 
@@ -91,8 +92,9 @@ APPEND=$(
     echo "${PREPEND}EXPIRATION=${EXPIRATION}"
 );
 
+echo "Saving env file: ${DOTENV_FILE}"
 echo "$DOTENV$APPEND" > $DOTENV_FILE
 
-if [ ! -z "${EXPORT_TEMP_CREDS}"]; then 
-    source $DOTENV_FILE
+if [ ! -z "${EXPORT_TEMP_CREDS}" ]; then
+    echo "Run the following to import env vars: source ${DOTENV_FILE}"
 fi
