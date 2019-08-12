@@ -68,13 +68,12 @@ debug "Result: ${OUTPUT}"
 AWS_ACCESS_KEY_ID=$(echo $OUTPUT | jq -r '.Credentials.AccessKeyId')
 AWS_SECRET_ACCESS_KEY=$(echo $OUTPUT | jq -r '.Credentials.SecretAccessKey')
 AWS_SESSION_TOKEN=$(echo $OUTPUT | jq -r '.Credentials.SessionToken')
-EXPIRATION=$(echo $OUTPUT | jq -r '.Credentials.Expiration')
+AWS_SESSION_EXPIRATION=$(echo $OUTPUT | jq -r '.Credentials.Expiration')
 
 DOTENV=""
 
 if [ -e "${DOTENV_FILE}" ]; then
-    DOTENV=$(sed 's/^EXPIRATION.*//;s/^AWS_ACCESS_KEY_ID.*//;s/^AWS_SECRET_ACCESS_KEY.*//;s/^AWS_SESSION_TOKEN.*//' ${DOTENV_FILE} | sed '/^$/d')
-    DOTENV=$(sed 's/^export EXPIRATION.*//;s/^export AWS_ACCESS_KEY_ID.*//;s/^export AWS_SECRET_ACCESS_KEY.*//;s/^export AWS_SESSION_TOKEN.*//' ${DOTENV_FILE} | sed '/^$/d')
+    DOTENV=$(sed 's/^.*AWS_SESSION_EXPIRATION.*//;s/^.*AWS_ACCESS_KEY_ID.*//;s/^.*AWS_SECRET_ACCESS_KEY.*//;s/^.*AWS_SESSION_TOKEN.*//;' ${DOTENV_FILE} | sed '/^$/d')
 fi
 
 PREPEND=""
@@ -84,12 +83,10 @@ if [ ! -z "${EXPORT_TEMP_CREDS}" ]; then
 fi
 
 APPEND=$(
-    echo ""
-    echo ""
     echo "${PREPEND}AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}"; \
     echo "${PREPEND}AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}"; \
     echo "${PREPEND}AWS_SESSION_TOKEN=${AWS_SESSION_TOKEN}"; \
-    echo "${PREPEND}EXPIRATION=${EXPIRATION}"
+    echo "${PREPEND}AWS_SESSION_EXPIRATION=${AWS_SESSION_EXPIRATION}"
 );
 
 echo "Saving env file: ${DOTENV_FILE}"
