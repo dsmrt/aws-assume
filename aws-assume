@@ -12,6 +12,7 @@ help(){
         echo "USAGE: $SCRIPT_NAME <subcommand> [options] "; \
             echo "SUBCOMMAND:"; \
             echo "      cp-public-key"; \
+            echo "      upload-public-key"; \
             echo "      get-ssh-config"; \
             echo "      temp-creds"; \
             echo "      open"; \
@@ -41,6 +42,9 @@ if [ $# -gt 0 ]; then
     if [ "$1" == "cp-public-key" ]; then
         shift 1
         bash $BIN_DIR/cp-public-key.bash $@
+    elif [ "$1" == "upload-public-key" ]; then
+        shift 1
+        bash $BIN_DIR/upload-public-key.bash $@
     elif [ "$1" == "get-ssh-config" ]; then
         shift 1
         bash $BIN_DIR/get-ssh-config.bash $@

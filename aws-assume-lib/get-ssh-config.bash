@@ -7,7 +7,7 @@ source "${DIR}/.text-decoration.bash"
 #print help
 help(){
     {
-        echo "USAGE: get-ssh-config <username> [options] "; \
+        echo "USAGE: get-ssh-config <username> <private-key> [options] "; \
             echo "DESCRIPTION:"
             echo "      Get the current ssh key for the specified user and return the ssh configuation as needed for the ~/.ssh/config."; \
             echo "      This also outputs an example clone command."; \
@@ -29,6 +29,7 @@ help(){
 }
 
 USERNAME=${POSITIONAL[0]};
+PRIVATE_KEY=${POSITIONAL[1]:-"~/.ssh/id_rsa"}
 
 if [ "help" == "${USERNAME}" ]; then
     help;
@@ -74,7 +75,7 @@ read -r -d '' SSH_CONFIG << EOM
         HostName git-codecommit.${AWS_DEFAULT_REGION}.amazonaws.com
         User ${KEY_ID}
         # Private key path. Match below to the public key
-        IdentityFile ~/.ssh/id_rsa
+        IdentityFile ${PRIVATE_KEY}
 EOM
 
 echo "Place the following in your ~/.ssh/config"
