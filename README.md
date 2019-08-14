@@ -11,13 +11,13 @@ Open the AWS Console to Switch Roles of the profile specified.
 Copy CodeCommit public key from one account to the other. This command will create a user if needed, assign the 
 AWSCodeCommitPowerUser managed role, and upload the public key from one account (specified profile) to an other (specified profile).
 
-### `upload-public-key`
-Upload CodeCommit public key from your local machine. This command will create a user if needed.
-
 #### Background
 CodeCommit can be difficult to manage user permission thru git when work on role based authentication. HTTPs authentication 
 doesn't work well (from my experience) and it's much easier to create a user for git authentication and assign a ssh key 
 to the user.
+
+### `upload-public-key`
+Upload CodeCommit public key from your local machine. This command will create a user if needed.
 
 ### `get-ssh-config`
 Get the current ssh key for the specified user and return the ssh configuation as needed for the `~/.ssh/config`. This 
