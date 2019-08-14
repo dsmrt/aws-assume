@@ -4,6 +4,16 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## 1.2.1
+### Fixed
+- Fixed issue with aws temp creds not adding a line break to the .env
+
+## 1.2.0
+### Fixed
+- Fixing issue with temp-creds replacing previous values
+### Changed 
+-Changed the name of the EXPIRATION to AWS_SESSION_EXPIRATION to be more specific.
+
 ## 1.0.5
 ### Fixed
 - Fixing issue with temp-creds. Replacing hard coded `.env` file with variable.

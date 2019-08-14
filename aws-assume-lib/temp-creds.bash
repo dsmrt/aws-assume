@@ -83,6 +83,7 @@ if [ ! -z "${EXPORT_TEMP_CREDS}" ]; then
 fi
 
 APPEND=$(
+    echo ""; \
     echo "${PREPEND}AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}"; \
     echo "${PREPEND}AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}"; \
     echo "${PREPEND}AWS_SESSION_TOKEN=${AWS_SESSION_TOKEN}"; \
