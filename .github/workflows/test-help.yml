@@ -1,4 +1,4 @@
-name: CI
+name: Test Executables
 
 on: 
   push: 
@@ -13,4 +13,4 @@ jobs:
     steps:
     - name: Test Help
       run: |
-        ./aws-assume
+        ls -l
