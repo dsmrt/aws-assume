@@ -68,7 +68,7 @@ if [ -z "${KEYID}" ]; then
     exit 1;
 fi
 
-PUBLIC_KEY=$(aws --profile ${FROM_PROFILE} iam get-ssh-public-key --user-name $USERNAME --ssh-public-key-id $KEYID --encoding PEM | jq -r '.SSHPublicKey.SSHPublicKeyBody')
+PUBLIC_KEY=$(aws --profile ${FROM_PROFILE} iam get-ssh-public-key --user-name $USERNAME --ssh-public-key-id $KEYID --encoding SSH | jq -r '.SSHPublicKey.SSHPublicKeyBody')
 
 debug "$PUBLIC_KEY"
 debug "Found public key ... going to save it to the new profile: ${TO_PROFILE}"

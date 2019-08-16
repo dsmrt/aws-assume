@@ -4,7 +4,7 @@ BIN_DIR="${DIR}/aws-assume-lib"
 
 SCRIPT_NAME=`basename "$0"`
 
-VERSION="v1.2.2"
+VERSION="v1.2.3"
 
 #print help
 help(){
