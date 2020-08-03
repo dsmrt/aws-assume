@@ -1,0 +1,16 @@
+name: Test Executables
+
+on: 
+  push: 
+    branches:
+    - master
+
+jobs:
+  test:
+
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Test Help
+      run: |
+        ls -l
