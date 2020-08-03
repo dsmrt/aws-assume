@@ -16,6 +16,8 @@ help(){
             echo "              Export as environmental variables"; \
             echo "      -p --profile"; \
             echo "              AWS profile name to authenticate with"; \
+            echo "      -user --as-user"; \
+            echo "              AWS profile name to authenticate with"; \
             echo "      -d --debug"; \
             echo "              Show debug messaging"; \
             echo "      -h --help"; \
@@ -53,16 +55,26 @@ if [ -z "${DOTENV_FILE}" ]; then
     DOTENV_FILE=/tmp/aws-assume-dotenv
 fi
 
-if [ -z "${ROLE_ARN}" ]; then
-    error "Role arn was not found. Using wrong profile? Is this profile configured correctly? Profile: ${AWS_DEFAULT_PROFILE}"
+if [ -z "${ROLE_ARN}" ] && [ -z "${AS_USER}" ]; then
+    error "Role arn was not found. Using wrong profile? Is this profile configured correctly? Profile: ${AWS_DEFAULT_PROFILE}."
+    echo ""
+    echo "TIP: Pass --as-user if this is a user based profile."
     echo ""
     echo ""
     help 1;
 fi
 
-debug "Role arn: ${ROLE_ARN}"
+if [ -z "${AS_USER}" ]; then
 
-OUTPUT=$(aws --profile $AWS_DEFAULT_PROFILE sts assume-role --duration-seconds $MAX_DURATION --role-arn $ROLE_ARN --role-session-name $SESSION_NAME)
+    debug "Role arn: ${ROLE_ARN}"
+
+    OUTPUT=$(aws --profile $AWS_DEFAULT_PROFILE sts assume-role --duration-seconds $MAX_DURATION --role-arn $ROLE_ARN --role-session-name $SESSION_NAME)
+else
+    debug "Running as user."
+
+    OUTPUT=$(aws --profile $AWS_DEFAULT_PROFILE sts get-session-token --duration-seconds $MAX_DURATION)
+fi
+
 debug "Result: ${OUTPUT}"
 
 AWS_ACCESS_KEY_ID=$(echo $OUTPUT | jq -r '.Credentials.AccessKeyId')

@@ -26,6 +26,10 @@ case $key in
     shift # past argument
     shift # past value
     ;;
+    -user|--as-user)
+    export AS_USER="YES"
+    shift # past argument
+    ;;
     -e|--export)
     EXPORT_TEMP_CREDS="YES"
     shift # past argument
