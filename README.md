@@ -1,5 +1,7 @@
 # AWS ASSUME
 
+[![test](https://github.com/dsmrt/aws-assume/workflows/test/badge.svg)](https://github.com/dsmrt/aws-assume/actions)
+
 Shell scripts to automate common actions when managing multiple AWS accounts thru Switch roles/role based authentication.
 
 ## Sub Commands
