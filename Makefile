@@ -5,7 +5,32 @@ ACTION_INSTALL := github-action-install
 install:
 	./install.sh
 
-test: test-action-install test-action-help
+test:
+	@echo ""
+	@echo ""
+	@echo "~~~~~~~~~~~~~~~~~~~~~~~~~"
+	./aws-assume cp-public-key help
+	@echo ""
+	@echo ""
+	@echo "~~~~~~~~~~~~~~~~~~~~~~~~~"
+	./aws-assume upload-public-key help
+	@echo ""
+	@echo ""
+	@echo "~~~~~~~~~~~~~~~~~~~~~~~~~"
+	./aws-assume get-ssh-config help
+	@echo ""
+	@echo ""
+	@echo "~~~~~~~~~~~~~~~~~~~~~~~~~"
+	./aws-assume temp-creds help
+	@echo ""
+	@echo ""
+	@echo "~~~~~~~~~~~~~~~~~~~~~~~~~"
+	./aws-assume open help
+	@echo ""
+	@echo ""
+	@echo "~~~~~~~~~~~~~~~~~~~~~~~~~"
+	./aws-assume help
+test-docker: test-action-install test-action-help
 
 build-action-install:
 	docker build -t ${ACTION_INSTALL} actions/install
