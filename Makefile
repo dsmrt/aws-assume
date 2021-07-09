@@ -31,6 +31,7 @@ test:
 	@echo "~~~~~~~~~~~~~~~~~~~~~~~~~"
 	./aws-assume help
 
+#test within docker
 test-docker: test-action-install test-action-help
 
 build-action-install:
