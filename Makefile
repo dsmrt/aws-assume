@@ -30,6 +30,7 @@ test:
 	@echo ""
 	@echo "~~~~~~~~~~~~~~~~~~~~~~~~~"
 	./aws-assume help
+
 test-docker: test-action-install test-action-help
 
 build-action-install:
